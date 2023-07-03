@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body>
+    <div id="app">
+        <h1>Wallet ID Generator</h1>
+        <form id="register">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <button type="submit">Register</button>
+        </form>
+        <div id="result">
+            <h2>Your Wallet ID</h2>
+            <p id="walletId"></p>
+            <button id="copyButton">Copy to clipboard</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
