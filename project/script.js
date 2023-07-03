@@ -2,24 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("register");
   const walletIdElement = document.getElementById("walletId");
   const copyButton = document.getElementById("copyButton");
-
-  const hexNumber = "0x2bf2FE4Ec99F6AF6d84a26222B65E16214F69596";
-  const decNumber = BigInt(hexNumber);
-
-  class Xorshift {
-    constructor(seed = 1) {
-      this._seed = seed;
-    }
-
-    random() {
-      this._seed ^= this._seed << 13;
-      this._seed ^= this._seed >> 17;
-      this._seed ^= this._seed << 5;
-      return Number((this._seed >>> 0) / 2 ** 32);
-    }
-  }
-
-  let rng = new Xorshift(decNumber);
+  const messageElement = document.getElementById("message");
 
   form.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -37,13 +20,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
     localStorage.setItem(email, JSON.stringify(userData));
 
-    walletIdElement.textContent = walletId;
+    messageElement.textContent = `Registered successfully! Your unique Wallet ID is displayed below. Please copy it for future use.`;
+    animateWalletId(walletId, walletIdElement);
   });
 
   copyButton.addEventListener("click", function () {
     navigator.clipboard.writeText(walletIdElement.textContent).then(
       function () {
         console.log("Copying to clipboard was successful!");
+        messageElement.textContent = `Wallet ID copied to clipboard!`;
       },
       function (err) {
         console.error("Could not copy text: ", err);
@@ -52,13 +37,30 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   function generateWalletId() {
-    const characters =
+    var result = "";
+    var characters =
       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    let result = "";
-    const charactersLength = characters.length;
-    for (let i = 0; i < 24; i++) {
-      result += characters.charAt(Math.floor(rng.random() * charactersLength));
+    var charactersLength = characters.length;
+    for (var i = 0; i < 24; i++) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
-    return result;
+    return "ID-" + result;
+  }
+
+  function animateWalletId(walletId, walletIdElement) {
+    walletIdElement.textContent = ""; // Clear previous ID
+
+    let i = 0;
+    const intervalId = setInterval(function () {
+      if (i < walletId.length) {
+        const span = document.createElement("span");
+        span.textContent = walletId[i];
+        span.className = "wallet-id-char";
+        walletIdElement.appendChild(span);
+        i++;
+      } else {
+        clearInterval(intervalId);
+      }
+    }, 100); // Change this value to adjust speed
   }
 });
