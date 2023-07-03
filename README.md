@@ -5,15 +5,13 @@ Generate a unique 24-character wallet ID for every new user with this Chrome ext
 
 ## 📚 Table of Contents
 
-- [Wallet ID Generator Extension 💼🔑](#wallet-id-generator-extension-)
-  - [📚 Table of Contents](#-table-of-contents)
-  - [🚀 Introduction](#-introduction)
-  - [🛠️ Installation](#️-installation)
-  - [💡 Features](#-features)
-  - [🖥️ Usage](#️-usage)
-  - [🏗️ Project Structure](#️-project-structure)
-  - [👨‍💻 Development](#-development)
-  - [🤝 Contributing](#-contributing)
+1. [🚀 Introduction](#introduction)
+2. [🛠️ Installation](#installation)
+3. [💡 Features](#features)
+4. [🖥️ Usage](#usage)
+5. [🏗️ Project Structure](#project-structure)
+6. [👨‍💻 Development](#development)
+7. [🤝 Contributing](#contributing)
 
 ## 🚀 Introduction
 The Wallet ID Generator is a simple and effective tool that assists users in generating a unique, random, 24-character wallet ID. This extension can be installed in your Chrome browser and is easy to use. It also provides a feature to copy the generated ID to the clipboard with a single click!
